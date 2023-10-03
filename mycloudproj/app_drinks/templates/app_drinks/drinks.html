@@ -1,0 +1,26 @@
+{% extends "app_general/components/base.html" %}
+
+{% block title %} Drinks O Drunks | Menu {% endblock title %}
+
+{% block content %}
+    <div>
+        <h2>All Our Drinks</h2>
+        <p>Make Your days with us</p>
+        {% for drink in drinks %}
+            <div style='background-color: lightblue;'>
+                <h3><a href="{% url "drink_info" drink.id %}">{{ drink.title }}</a></h3>
+                <p>{{ drink.price | floatformat:'g' }} Bath</p>
+                {% if drink.is_premium %} <p>***Premium Menu***</p> {% endif %}
+                <p> Promotion : 
+                {% if drink.promotion_end is not None %}
+                    {{ drink.promotion_end | date:'j N Y'}}
+                {% else %}
+                    No Promotion
+                {% endif %}
+            </p>
+            </div>
+        {% empty %}
+            <p>ไม่มีเธอ ไม่มีเธอ เดี๋ยวมา เดี๋ยวเจอกัน</p>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "app_general/components/base.html" %} 
+
+{% block title%} {{drink.title}} {% endblock title %}
+
+{% block content %} 
+    {% if drink is not None %}
+        <div>
+        <h3>{{ drink.title }}</h3>
+        <p>{{ drink.price | floatformat:'g' }} Bath</p>
+        {% if drink.is_premium %}
+            <p>***Premium Menu***</p>
+        {% endif %}
+        <p>Promotion : 
+            {% if drink.promotion_end is not None %}
+                {{ drink.promotion_end | date:'j N Y'}}
+            {% else %}
+                No Promotion
+            {% endif %}
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nostrum
+            dolores sed ea blanditiis quibusdam voluptatibus numquam, veniam dolorem!
+            Officia voluptas consequuntur possimus facere eveniet quae aliquam molestiae
+            natus ducimus.
+        </p>
+        </div>
+    {% else %}
+        <p>ไม่พบเมนูนี้</p>
+    {% endif %} 
+{% endblock content %}
+
