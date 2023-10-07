@@ -1,0 +1,34 @@
+{% extends "app_general/components/base.html" %}
+
+{% block title %} Subcription {% endblock title %}
+
+{% block content %}
+    <form>
+        <h1>Subscription</h1>
+        <p> กรุณาเลือกเมนูที่ต้องการ </p>
+        <div id='name'>
+            <label for="user_name"> ชื่อ - นามสกุล </label>
+            <p> <input type="text" name="user_name"> </p>
+        </div>
+        <div id='email' >
+            <label for="user_email"> email </label>
+            <p> <input type="email" name="user_email"> </p>
+        </div>
+
+        <div id='menu_input'>
+            <label> Menu </label>
+            {% for drink in drinks %}
+               <p>  <input type="checkbox" name="select_menu" id=""> <label> {{ drink.title }} </label> </p>
+            {% endfor %}
+        </div>
+
+        <div>
+            <label > อ่านและยอมรับข้อตกลงและเงื่อนไข </label>
+            <p> <input type="checkbox" name="policy"> <label> ยอมรับ<a href="#">ข้อตกลง</a> </label> </p>
+        </div>
+
+        <a href="#"> ลงทะเบียน </a>
+    </form>
+
+{% endblock content %}
+
