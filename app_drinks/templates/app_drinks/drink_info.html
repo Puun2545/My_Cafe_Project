@@ -5,27 +5,37 @@
 {% block content %} 
     {% if drink is not None %}
         <div>
-        <h3>{{ drink.title }}</h3>
-        <p>{{ drink.price | floatformat:'g' }} Bath</p>
-        {% if drink.is_premium %}
-            <p>***Premium Menu***</p>
-        {% endif %}
-        <p>Promotion : 
-            {% if drink.promotion_end is not None %}
-                {{ drink.promotion_end | date:'j N Y'}}
+            <h3>{{ drink.title }}</h3>
+            
+            {% comment %} Promotion Prices {% endcomment %}
+            {% if drink.promotion_price is not None %}
+                <p>
+                    <span>{{ drink.promotion_price |  floatformat:'g' }} Baht </span>
+                    <del>{{ drink.price | floatformat:'g' }} Baht</del>
+                </p>
             {% else %}
-                No Promotion
+                <p>{{ drink.price | floatformat:'g' }} Baht</p>
             {% endif %}
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nostrum
-            dolores sed ea blanditiis quibusdam voluptatibus numquam, veniam dolorem!
-            Officia voluptas consequuntur possimus facere eveniet quae aliquam molestiae
-            natus ducimus.
-        </p>
+
+            {% comment %} Is_Premium Check {% endcomment %}
+            {% if drink.is_premium %}
+                <p>***Premium Menu***</p>
+            {% endif %}
+
+            <p>Promotion : 
+                {% if drink.promotion_end is not None %}
+                    {{ drink.promotion_end | date:'j N Y'}}
+                {% else %}
+                    No Promotion
+                {% endif %}
+            </p>
+            <p>
+                {{ drink.description }}
+            </p>
         </div>
     {% else %}
         <p>ไม่พบเมนูนี้</p>
     {% endif %} 
+
 {% endblock content %}
 

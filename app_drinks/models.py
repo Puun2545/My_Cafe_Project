@@ -9,6 +9,5 @@ class Drink(models.Model):
     is_premium = models.BooleanField(default=False)
     promotion_end_at = models.DateTimeField(null=True)
     description = models.TextField(null=True)
-    
 
     

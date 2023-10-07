@@ -9,11 +9,20 @@
         {% for drink in drinks %}
             <div style='background-color: lightblue;'>
                 <h3><a href="{% url "drink_info" drink.id %}">{{ drink.title }}</a></h3>
-                <p>{{ drink.price | floatformat:'g' }} Bath</p>
+
+                {% if drink.promotion_price is not None %}
+                    <p>
+                        <span>{{ drink.promotion_price |  floatformat:'g' }} Baht </span>
+                        <del>{{ drink.price | floatformat:'g' }} Baht</del>
+                    </p>
+                {% else %}
+                    <p>{{ drink.price | floatformat:'g' }} Baht</p>
+                {% endif %}
+
                 {% if drink.is_premium %} <p>***Premium Menu***</p> {% endif %}
-                <p> Promotion : 
-                {% if drink.promotion_end is not None %}
-                    {{ drink.promotion_end | date:'j N Y'}}
+                <p> Promotion ถึงวันที่ : 
+                {% if drink.promotion_end_at is not None %}
+                    {{ drink.promotion_end_at | date:'j N Y'}}
                 {% else %}
                     No Promotion
                 {% endif %}
