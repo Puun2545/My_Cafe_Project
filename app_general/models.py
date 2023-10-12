@@ -15,3 +15,6 @@ class Subscription(models.Model):
     registered_at = models.DateTimeField(auto_now_add=True)
     drink_set = models.ManyToManyField('app_drinks.Drink')
     
+    def __str__(self) -> str:
+        return '{} (id={})'.format(self.name, self.id)
+    
