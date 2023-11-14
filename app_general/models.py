@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Subscription(models.Model):
-    @staticmethod
+
     STATUS = [
         ('unapproved', 'Unapproved'),
         ('approved', 'Approved'),
