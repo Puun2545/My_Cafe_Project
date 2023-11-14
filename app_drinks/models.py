@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Drink(models.Model):
+    @staticmethod
     title = models.CharField(max_length=60)
     price = models.IntegerField()
     promotion_price = models.IntegerField(null=True)
