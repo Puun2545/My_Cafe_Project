@@ -11,22 +11,27 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^j5m(l29(_a-029q%$$qwllx4^f0*o--ik+kuqe9-3jik5li7a'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
-
+production_host = os.getenv('PRODUCTION_HOST')
+ALLOWED_HOSTS = [production_host] if production_host is not None else []
 
 # Application definition
 
@@ -78,11 +83,11 @@ WSGI_APPLICATION = 'mycafe.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'mycloudproj',
-        'USER': 'root',
-        'PASSWORD': '379870puun',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT')
     }
 }
 
